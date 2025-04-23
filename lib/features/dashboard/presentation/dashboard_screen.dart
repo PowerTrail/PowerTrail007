@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:power_grid_04/core/providers/substation_provider.dart';
+import 'package:power_grid_04/core/widgets/voltage_gauge.dart';
+import 'package:power_grid_04/features/dashboard/presentation/control_panel.dart';
 import 'package:provider/provider.dart';
-import 'package:substation_control/core/providers/substation_provider.dart';
-import 'package:substation_control/core/widgets/voltage_gauge.dart';
-import 'package:substation_control/features/dashboard/presentation/control_panel.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});

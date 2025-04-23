@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:power_grid_04/core/providers/substation_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:substation_control/core/providers/substation_provider.dart';
 
 class ControlPanel extends StatelessWidget {
   const ControlPanel({super.key});

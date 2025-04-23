@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:power_grid_04/core/providers/substation_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:substation_control/core/providers/substation_provider.dart';
+import 'package:intl/intl.dart';
 
 class HistoryScreen extends StatelessWidget {
   const HistoryScreen({super.key});
@@ -9,6 +9,7 @@ class HistoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final logs = Provider.of<SubstationProvider>(context).actionLogs;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Operation History'),
@@ -24,13 +25,15 @@ class HistoryScreen extends StatelessWidget {
         separatorBuilder: (_, __) => const Divider(),
         itemBuilder: (context, index) {
           final log = logs[index];
+          final timestamp = log['timestamp'];
+
           return ListTile(
             leading: const Icon(Icons.history),
             title: Text(log['action']),
             subtitle: Text(
-              DateFormat(
-                'MMM dd, yyyy - hh:mm a',
-              ).format(log['timestamp'].toDate()),
+              timestamp != null
+                  ? _formatDateTime(DateTime.parse(timestamp))
+                  : 'Unknown time',
             ),
             trailing: Chip(
               label: Text(log['status'] ?? 'Completed'),
@@ -40,6 +43,10 @@ class HistoryScreen extends StatelessWidget {
         },
       ),
     );
+  }
+
+  String _formatDateTime(DateTime dt) {
+    return DateFormat('hh:mm a, dd MMM yyyy').format(dt);
   }
 
   Color _getStatusColor(String? status) {
@@ -76,7 +83,7 @@ class HistoryScreen extends StatelessWidget {
       title: Text(text),
       onTap: () {
         Navigator.pop(context);
-        // Implement filter logic
+        // Implement filter logic here
       },
     );
   }

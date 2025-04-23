@@ -1,18 +1,22 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 class DatabaseService {
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  // Mock substation data
+  final List<Map<String, dynamic>> _mockSubstations = [
+    {
+      'name': 'Main Substation A',
+      'voltage': '220 kV',
+      'status': 'Online',
+      'lastUpdated': DateTime.now().toString(),
+    },
+  ];
 
+  // Mock action logs
   Future<void> logAction(String action, String substationId) async {
-    await _firestore.collection('action_logs').add({
-      'action': action,
-      'substation_id': substationId,
-      'timestamp': FieldValue.serverTimestamp(),
-      'status': 'completed',
-    });
+    await Future.delayed(
+        const Duration(milliseconds: 300)); // Simulate DB write
   }
 
-  Stream<QuerySnapshot> getSubstations() {
-    return _firestore.collection('substations').snapshots();
+  // Mock substation stream
+  Stream<List<Map<String, dynamic>>> getSubstations() {
+    return Stream.value(_mockSubstations);
   }
 }

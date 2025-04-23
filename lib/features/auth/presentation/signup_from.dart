@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:power_grid_04/core/services/auth_service.dart';
 import 'package:provider/provider.dart';
-import 'package:substation_control/core/services/auth_service.dart';
 
 class SignupForm extends StatefulWidget {
   const SignupForm({super.key});
@@ -61,9 +61,9 @@ class _SignupFormState extends State<SignupForm> {
           _isLoading
               ? const CircularProgressIndicator()
               : ElevatedButton(
-                onPressed: _submit,
-                child: const Text('Sign Up'),
-              ),
+                  onPressed: _submit,
+                  child: const Text('Sign Up'),
+                ),
         ],
       ),
     );

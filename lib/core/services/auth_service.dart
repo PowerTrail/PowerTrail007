@@ -1,23 +1,22 @@
-import 'package:firebase_auth/firebase_auth.dart';
+// Define MockUser at the top level (or in a separate file if reused)
+class MockUser {
+  final String email;
+  MockUser(this.email);
+}
 
 class AuthService {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  // Mock auth state stream
+  Stream<MockUser?> get user => Stream.value(MockUser("operator@grid.com"));
 
-  Stream<User?> get user => _auth.authStateChanges();
-
-  Future<User?> signIn(String email, String password) async {
-    try {
-      UserCredential result = await _auth.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-      return result.user;
-    } catch (e) {
-      rethrow;
+  // Mock sign-in
+  Future<MockUser?> signIn(String email, String password) async {
+    await Future.delayed(const Duration(seconds: 1)); // Simulate network delay
+    if (email == "operator@grid.com" && password == "secure123") {
+      return MockUser(email);
     }
+    throw Exception("Invalid credentials");
   }
 
-  Future<void> signOut() async {
-    await _auth.signOut();
-  }
+  // Mock sign-out
+  Future<void> signOut() async => await Future.delayed(Duration.zero);
 }

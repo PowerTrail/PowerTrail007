@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:substation_control/core/constants/strings.dart';
+import 'package:power_grid_04/core/constants/strings.dart';
 
 class SubstationCard extends StatelessWidget {
   final String name;

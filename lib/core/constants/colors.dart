@@ -8,13 +8,14 @@ class AppColors {
 
   static final ThemeData lightTheme = ThemeData(
     primaryColor: primary,
-    colorScheme: ColorScheme.light(primary: primary, secondary: secondary),
+    colorScheme:
+        const ColorScheme.light(primary: primary, secondary: secondary),
     scaffoldBackgroundColor: Colors.white,
   );
 
   static final ThemeData darkTheme = ThemeData(
     primaryColor: primary,
-    colorScheme: ColorScheme.dark(primary: primary, secondary: secondary),
+    colorScheme: const ColorScheme.dark(primary: primary, secondary: secondary),
     scaffoldBackgroundColor: Colors.grey[900],
   );
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:power_grid_04/core/providers/nav_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:substation_control/core/providers/nav_provider.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CustomBottomNav extends StatelessWidget {
   const CustomBottomNav({super.key});

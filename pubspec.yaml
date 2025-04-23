@@ -1,27 +1,23 @@
-name: substation_control
-description: Industrial IoT Substation Management
-
+name: power_grid_04
+description: A new Flutter project.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=3.7.0 <4.0.0"
-  flutter: ">=3.16.0"
+  sdk: '^3.7.0'
 
 dependencies:
   flutter:
     sdk: flutter
-  firebase_core: ^2.15.1
-  firebase_auth: ^4.9.1
-  cloud_firestore: ^4.8.3
   provider: ^6.0.5
-  flutter_map: ^5.0.0
-  latlong2: ^0.9.0
-  syncfusion_flutter_gauges: ^21.1.40
-  intl: ^0.18.1
-  flutter_neumorphic: ^3.2.0
-  font_awesome_flutter: ^10.5.0
+  font_awesome_flutter: ^10.8.0
+  intl: ^0.20.2
+  latlong2: ^0.9.1
+  flutter_map: ^8.1.1
+  syncfusion_flutter_gauges: ^29.1.39
 
-flutter:
-  uses-material-design: true
-  assets:
-    - assets/images/
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+

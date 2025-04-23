@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SubstationProvider with ChangeNotifier {
   double _voltage = 220.0;
@@ -21,12 +20,12 @@ class SubstationProvider with ChangeNotifier {
     _actionLogs.addAll([
       {
         'action': 'Voltage adjusted to 220V',
-        'timestamp': Timestamp.now(),
+        'timestamp': DateTime.now(), // Replaced Timestamp
         'status': 'Completed',
       },
       {
         'action': 'Circuit breaker reset',
-        'timestamp': Timestamp.now(),
+        'timestamp': DateTime.now(), // Replaced Timestamp
         'status': 'Pending',
       },
     ]);
@@ -60,7 +59,7 @@ class SubstationProvider with ChangeNotifier {
   void _logAction(String action) {
     _actionLogs.insert(0, {
       'action': action,
-      'timestamp': Timestamp.now(),
+      'timestamp': DateTime.now(), // Replaced Timestamp
       'status': 'Completed',
     });
   }
@@ -68,7 +67,7 @@ class SubstationProvider with ChangeNotifier {
   void addAlert(String message, String severity) {
     _alerts.insert(0, {
       'message': message,
-      'timestamp': DateTime.now().toString(),
+      'timestamp': DateTime.now().toString(), // Already correct
       'severity': severity,
     });
     notifyListeners();

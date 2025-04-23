@@ -1,24 +1,24 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:substation_control/core/services/auth_service.dart';
+import 'package:power_grid_04/core/services/auth_service.dart';
 
 class AuthProvider with ChangeNotifier {
   final AuthService _authService;
-  User? _user;
+  MockUser? _user; // Explicitly typed as MockUser (non-nullable after login)
 
   AuthProvider({AuthService? authService})
-    : _authService = authService ?? AuthService() {
+      : _authService = authService ?? AuthService() {
     _authService.user.listen((user) {
-      _user = user;
+      _user = user; // Stream provides MockUser? which matches our type
       notifyListeners();
     });
   }
 
-  User? get user => _user;
+  MockUser? get user => _user; // Expose typed user
 
   Future<void> signIn(String email, String password) async {
     try {
-      _user = await _authService.signIn(email, password);
+      _user = await _authService.signIn(email, password); // Returns MockUser?
+      notifyListeners(); // Added missing notify
     } catch (e) {
       rethrow;
     }
@@ -27,5 +27,6 @@ class AuthProvider with ChangeNotifier {
   Future<void> signOut() async {
     await _authService.signOut();
     _user = null;
+    notifyListeners(); // Added missing notify
   }
 }
