@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:power_grid_04/features/auth/presentation/login_from.dart';
-import 'package:power_grid_04/features/auth/presentation/signup_from.dart';
+import 'login_from.dart';
+import 'signup_from.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});

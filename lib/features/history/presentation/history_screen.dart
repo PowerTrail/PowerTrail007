@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:power_grid_04/core/providers/substation_provider.dart';
+import '../../../core/providers/substation_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 
@@ -32,7 +32,7 @@ class HistoryScreen extends StatelessWidget {
             title: Text(log['action']),
             subtitle: Text(
               timestamp != null
-                  ? _formatDateTime(DateTime.parse(timestamp))
+                  ? _formatDateTime(DateTime.parse(timestamp.toString()))
                   : 'Unknown time',
             ),
             trailing: Chip(

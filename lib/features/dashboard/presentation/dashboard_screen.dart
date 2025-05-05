@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:power_grid_04/core/providers/substation_provider.dart';
-import 'package:power_grid_04/core/widgets/voltage_gauge.dart';
-import 'package:power_grid_04/features/dashboard/presentation/control_panel.dart';
+import '../../../core/providers/substation_provider.dart';
+import '../../../core/widgets/voltage_gauge.dart';
+import 'control_panel.dart';
 import 'package:provider/provider.dart';
 
 class DashboardScreen extends StatelessWidget {
@@ -42,7 +42,7 @@ class DashboardScreen extends StatelessWidget {
     return Column(
       children: [
         CircleAvatar(
-          backgroundColor: color.withOpacity(0.2),
+          backgroundColor: color.withAlpha((0.2 * 255).toInt()),
           child: Icon(icon, color: color),
         ),
         const SizedBox(height: 4),

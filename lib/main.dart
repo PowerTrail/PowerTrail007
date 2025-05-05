@@ -1,25 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:power_grid_04/core/constants/colors.dart';
-import 'package:power_grid_04/core/providers/auth_provider.dart';
-import 'package:power_grid_04/core/providers/nav_provider.dart';
-import 'package:power_grid_04/core/providers/substation_provider.dart';
-import 'package:power_grid_04/core/providers/theme_provider.dart';
-import 'package:power_grid_04/core/widgets/custom_bottom_nav.dart';
-import 'package:power_grid_04/features/alerts/presentation/alerts_screen.dart';
-import 'package:power_grid_04/features/dashboard/presentation/dashboard_screen.dart';
-import 'package:power_grid_04/features/history/presentation/history_screen.dart';
-import 'package:power_grid_04/features/map/presentation/map_screen.dart';
+import 'core/constants/colors.dart';
+import 'core/providers/auth_provider.dart';
+import 'core/providers/nav_provider.dart';
+import 'core/providers/substation_provider.dart';
+import 'core/providers/theme_provider.dart';
+import 'core/widgets/custom_bottom_nav.dart';
+import 'features/alerts/presentation/alerts_screen.dart';
+import 'features/dashboard/presentation/dashboard_screen.dart';
+import 'features/history/presentation/history_screen.dart';
+import 'features/map/presentation/map_screen.dart';
 import 'package:provider/provider.dart';
-import 'package:power_grid_04/features/auth/presentation/login_screen.dart';
+import 'features/auth/presentation/login_screen.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Load environment variables
+  await dotenv.load(fileName: '.env');
+
+  await Supabase.initialize(
+    url: dotenv.env['SUPABASE_URL']!, // Use dotenv to fetch SUPABASE_URL
+    anonKey: dotenv.env['SUPABASE_ANON_KEY']!, // Use dotenv to fetch SUPABASE_ANON_KEY
+  );
+
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => AuthProvider()), // Added
+        ChangeNotifierProvider(create: (_) => AuthProvider()),
         ChangeNotifierProvider(create: (_) => NavProvider()),
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
-        ChangeNotifierProvider(create: (_) => SubstationProvider()), // Added
+        ChangeNotifierProvider(create: (_) => SubstationProvider()),
       ],
       child: const MyApp(),
     ),

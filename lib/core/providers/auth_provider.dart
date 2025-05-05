@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:power_grid_04/core/services/auth_service.dart';
+import '../services/auth_service.dart';
 
 class AuthProvider with ChangeNotifier {
   final AuthService _authService;
