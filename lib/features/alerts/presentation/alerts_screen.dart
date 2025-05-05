@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:power_grid_04/core/providers/substation_provider.dart';
+import '../../../core/providers/substation_provider.dart';
 import 'package:provider/provider.dart';
 
 class AlertsScreen extends StatelessWidget {

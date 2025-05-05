@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:power_grid_04/core/services/auth_service.dart';
+import '../../../core/providers/auth_provider.dart';
 import 'package:provider/provider.dart';
 
 class LoginForm extends StatefulWidget {
@@ -55,17 +55,34 @@ class _LoginFormState extends State<LoginForm> {
     if (!_formKey.currentState!.validate()) return;
 
     setState(() => _isLoading = true);
+    
     try {
-      await Provider.of<AuthService>(
-        context,
-        listen: false,
-      ).signIn(_emailController.text.trim(), _passwordController.text.trim());
+      // Get auth provider synchronously before the await
+      final authProvider = Provider.of<AuthProvider>(context, listen: false);
+      
+      // Perform async operation
+      await authProvider.signIn(
+        _emailController.text.trim(), 
+        _passwordController.text.trim()
+      );
+      
+      // After the await, check if still mounted before accessing context
+      if (!mounted) return;
+      
+      // Now we can use context safely
     } catch (e) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(e.toString())));
+      // After the await, check if still mounted before accessing context
+      if (!mounted) return;
+      
+      // Now we can use context safely
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Login failed: $e')),
+      );
     } finally {
-      setState(() => _isLoading = false);
+      // After the await, check if still mounted before calling setState
+      if (mounted) {
+        setState(() => _isLoading = false);
+      }
     }
   }
 
